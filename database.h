@@ -7,6 +7,7 @@
 #include <functional>
 
 #include "linked_list.h"
+#include "database.h"
 
 using std::string;
 using database::core::list::linked_list;

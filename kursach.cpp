@@ -2,8 +2,13 @@
 //
 
 #include <iostream>
+#include "database.h"
+#include "student.h"
+
+using database::entities::student;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    auto db = database::database_c<student>("data.db");
+
 }

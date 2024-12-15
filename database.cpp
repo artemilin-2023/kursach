@@ -4,6 +4,7 @@
 #include <vector>
 #include <exception>
 #include <stdio.h>
+#include <iomanip>
 
 #include "database.h"
 #include "sorting.h"
@@ -97,7 +98,7 @@ namespace database {
     }
 
     template<class T>
-    linked_list<T> orderBy(std::function<bool(const T&, const T&)> comparator) {
+    linked_list<T> database<T>::orderBy(std::function<bool(const T&, const T&)> comparator) {
         auto resultList = linked_list<T>();
         data.copyTo(&resultList);
 

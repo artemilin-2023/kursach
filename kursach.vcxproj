@@ -23,15 +23,12 @@
     <ClInclude Include="helpers.h" />
     <ClInclude Include="linked_list.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="sorting.h" />
     <ClInclude Include="student.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="database.tpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="kursach.cpp" />
-    <ClCompile Include="linked_list.tpp" />
     <ClCompile Include="sorting.cpp" />
     <ClCompile Include="student.cpp" />
   </ItemGroup>

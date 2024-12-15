@@ -42,7 +42,7 @@ namespace database {
 
 }
 
-#include "database.tpp"
+#include "database.cpp"
 #endif
 
 #pragma clang diagnostic pop

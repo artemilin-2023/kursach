@@ -47,10 +47,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="database.tpp">
+    <ClCompile Include="database.cpp">
       <Filter>Исходные файлы\database</Filter>
     </ClCompile>
-    <ClCompile Include="linked_list.tpp">
+    <ClCompile Include="linked_list.cpp">
       <Filter>Исходные файлы\database\core</Filter>
     </ClCompile>
     <ClCompile Include="sorting.cpp">

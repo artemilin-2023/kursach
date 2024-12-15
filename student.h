@@ -21,6 +21,7 @@ namespace database {
             string address;
             string examResult;
 
+            student();
 
             student(
                 string firstName,

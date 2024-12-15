@@ -59,7 +59,7 @@ namespace database {
     }
 }
 
-#include "linked_list.tpp"
+#include "linked_list.cpp"
 #endif
 
 #pragma clang diagnostic pop

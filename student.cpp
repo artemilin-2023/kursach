@@ -3,6 +3,8 @@
 namespace database {
     namespace entities {
 
+        student::student() { }
+
         student::student(
             string firstName,
             string lastName,

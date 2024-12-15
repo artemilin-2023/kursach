@@ -9,7 +9,7 @@ namespace core {
 namespace sorting {
 
     template<class T>
-    linked_list<T> quick_sort(linked_list<T> list, std::function<bool(const T&, const T&)> compare) {
+    linked_list<T> quick_sort(linked_list<T> list, std::function<bool(const T&, const T&)> comparator) {
 
         std::stack<std::pair<int, int>> sort_stack{};
         sort_stack.emplace(0, list.size() - 1);
@@ -26,11 +26,11 @@ namespace sorting {
             while (true) {
                 do {
                     i++;
-                } while (!compare(&list.nodeAt(i)->data, &pivot));
+                } while (!comparator(&list.nodeAt(i)->data, &pivot));
 
                 do {
                     j--;
-                } while (compare(&list.nodeAt(j)->data, &pivot));
+                } while (comparator(&list.nodeAt(j)->data, &pivot));
 
                 if (i >= j)
                     break;

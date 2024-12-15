@@ -42,6 +42,9 @@
     <ClInclude Include="main.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="helpers.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="database.cpp">
@@ -56,8 +59,11 @@
     <ClCompile Include="student.cpp">
       <Filter>Исходные файлы\database\entities</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="kursach.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers.cpp">
+      <Filter>Исходные файлы\database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ namespace database {
     namespace core {
         namespace sorting {
             template<class T>
-            linked_list<T> quick_sort(linked_list<T> list, std::function<bool(const T&, const T&)> compare);
+            linked_list<T> quick_sort(linked_list<T> list, std::function<bool(const T&, const T&)> comparator);
         }
     }
 }

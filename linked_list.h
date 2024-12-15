@@ -5,6 +5,7 @@
 
 #include <optional>
 #include <iostream>
+#include "database.h"
 
 using database::core::list::linked_list;
 

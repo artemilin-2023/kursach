@@ -31,14 +31,14 @@ namespace database {
     linked_list<T> database<T>::readFrom(string path) {
         std::fstream file_input(path);
         if (!file_input.good() || file_input.peek() == EOF)
-            return linked_list<student>{};
+            return linked_list<T>{};
 
         string line;
-        auto result = linked_list<student>{};
+        auto result = linked_list<T>{};
         while (std::getline(file_input, line))
         {
             auto entityData = helpers::parse_row(line, columnDelimiter);
-            student entity = helpers::map(entityData);
+            T entity = helpers::map(entityData);
             result.push_back(entity);
         }
 
@@ -97,11 +97,11 @@ namespace database {
     }
 
     template<class T>
-    linked_list<T> orderBy(std::function<bool(const T&, const T&)> comparer) {
+    linked_list<T> orderBy(std::function<bool(const T&, const T&)> comparator) {
         auto resultList = linked_list<T>();
         data.copyTo(&resultList);
 
-        quick_sort(resultList, comparer);
+        quick_sort(resultList, comparator);
         return resultList;
     }
 

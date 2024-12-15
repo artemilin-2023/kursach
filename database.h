@@ -4,6 +4,7 @@
 #define KURSACH_DATABASE_H
 
 #include <string>
+#include <functional>
 
 #include "linked_list.h"
 
@@ -33,7 +34,7 @@ namespace database {
         void add(T item);
         bool deleteBy(int id);
         void print(std::vector<std::string> headers, string divider, int width = 20);
-        linked_list<T> orderBy(std::function<bool(const T&, const T&)> comparer);
+        linked_list<T> orderBy(std::function<bool(const T&, const T&)> comparator);
         linked_list<T> selectBy(string query);
         void startTransaction();
         bool commitTransaction();

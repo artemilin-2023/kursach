@@ -3,10 +3,8 @@
 #include <ostream>
 #include <vector>
 #include <exception>
-#include <stdio.h>
 #include <iomanip>
 
-#include "database.h"
 #include "sorting.h"
 #include "helpers.h"
 

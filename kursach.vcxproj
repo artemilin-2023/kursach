@@ -28,10 +28,10 @@
     <ClInclude Include="student.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="database.cpp" />
+    <ClCompile Include="database.tpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="kursach.cpp" />
-    <ClCompile Include="linked_list.cpp" />
+    <ClCompile Include="linked_list.tpp" />
     <ClCompile Include="sorting.cpp" />
     <ClCompile Include="student.cpp" />
   </ItemGroup>

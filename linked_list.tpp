@@ -1,4 +1,3 @@
-#include "linked_list.h"
 
 namespace database {
 namespace core {

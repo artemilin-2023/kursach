@@ -58,6 +58,8 @@ namespace database {
         }
     }
 }
+
+#include "linked_list.tpp"
 #endif
 
 #pragma clang diagnostic pop

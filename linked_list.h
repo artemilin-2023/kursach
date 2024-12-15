@@ -5,7 +5,6 @@
 
 #include <optional>
 #include <iostream>
-#include "database.h"
 
 namespace database {
     namespace core {

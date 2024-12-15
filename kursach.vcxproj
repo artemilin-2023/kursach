@@ -35,9 +35,6 @@
     <ClCompile Include="sorting.cpp" />
     <ClCompile Include="student.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="kursach.rc" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

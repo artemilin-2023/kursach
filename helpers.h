@@ -7,16 +7,13 @@
 
 #include <vector>
 #include <string>
-#include <sstream>
 
-using database::entities::student;
 
-namespace helpers {
-    student map(std::vector<std::string> data);
-    std::vector<std::string> map(student entity);
+student map(std::vector<std::string> data);
+std::vector<std::string> map(student entity);
 
-    std::vector<std::string> parse_row(std::string s, std::string delimiter);
-}
+std::vector<std::string> parse_row(std::string s, std::string delimiter);
+
 
 #endif
 

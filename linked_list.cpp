@@ -1,20 +1,18 @@
 #include "linked_list.h"
 
-namespace database {
-namespace core {
-namespace list {
+
 
 #pragma region node
 
     template<class T>
-    database::core::list::node<T>::node(T newData) {
+    node<T>::node(T newData) {
         data = newData;
         next = nullptr;
         prev = nullptr;
     }
 
     template<class T>
-    database::core::list::node<T>::node(T newData, node* newNext, node* newPrev) {
+    node<T>::node(T newData, node* newNext, node* newPrev) {
         data = newData;
         next = newNext;
         prev = newPrev;
@@ -25,27 +23,27 @@ namespace list {
 #pragma region linked_list
 
     template<class T>
-    database::core::list::linked_list<T>::linked_list() : head{}, tail{}, _size{} {}
+    linked_list<T>::linked_list() : head{}, tail{}, _size{} {}
 
     template<class T>
-    database::core::list::linked_list<T>::~linked_list() {
-        database::core::list::node<T>* current = head;
+    linked_list<T>::~linked_list() {
+        node<T>* current = head;
         while (current != nullptr) {
-            database::core::list::node<T>* next = current->next;
+            node<T>* next = current->next;
             delete current;
             current = next;
         }
     }
 
     template<class T>
-    database::core::list::node<T>* database::core::list::linked_list<T>::begin() const { return head; }
+    node<T>* linked_list<T>::begin() const { return head; }
 
     template<class T>
-    database::core::list::node<T>* database::core::list::linked_list<T>::end() const { return tail; }
+    node<T>* linked_list<T>::end() const { return tail; }
 
     template<class T>
-    database::core::list::node<T>* database::core::list::linked_list<T>::nodeAt(int index) const {
-        database::core::list::node<T>* current = head;
+    node<T>* linked_list<T>::nodeAt(int index) const {
+        node<T>* current = head;
         for (int i = 0; i < index; i++) {
             if (current == nullptr)
                 return nullptr;
@@ -55,17 +53,17 @@ namespace list {
     }
 
     template<class T>
-    bool database::core::list::linked_list<T>::empty() const { return head == nullptr; }
+    bool linked_list<T>::empty() const { return head == nullptr; }
 
     template<class T>
-    int database::core::list::linked_list<T>::size() const { return _size; }
+    int linked_list<T>::size() const { return _size; }
 
     template<class T>
-    void database::core::list::linked_list<T>::clear() {
-        database::core::list::node<T>* current = head;
+    void linked_list<T>::clear() {
+        node<T>* current = head;
         // delete nodes until there's none left
         while (current != nullptr) {
-            database::core::list::node<T>* next = current->next;
+            node<T>* next = current->next;
             delete current;
             current = next;
         }
@@ -75,12 +73,12 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::insert(database::core::list::node<T>* after_node, T data) {
+    void linked_list<T>::insert(node<T>* after_node, T data) {
         if (after_node == nullptr) {
             return;
         }
         // link the new node to its neighbors
-        database::core::list::node<T>* new_node = new node(data, after_node, after_node->prev);
+        node<T>* new_node = new node(data, after_node, after_node->prev);
         // link the prev node to the new node
         if (after_node->prev != nullptr) {
             after_node->prev->next = new_node;
@@ -94,7 +92,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::insert(int pos, T data) {
+    void linked_list<T>::insert(int pos, T data) {
         if (pos == _size) {
             push_back(data);
         }
@@ -107,7 +105,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::erase(database::core::list::node<T>* node) {
+    void linked_list<T>::erase(node<T>* node) {
         if (node == nullptr) {
             return;
         }
@@ -132,13 +130,13 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::erase(int index) {
+    void linked_list<T>::erase(int index) {
         erase(nodeAt(index));
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::push_back(T data) {
-        database::core::list::node<T>* new_node = new node(data);
+    void linked_list<T>::push_back(T data) {
+        node<T>* new_node = new node(data);
         if (tail == nullptr) {
             // empty
             head = new_node;
@@ -157,9 +155,9 @@ namespace list {
 
 
     template<class T>
-    void database::core::list::linked_list<T>::pop_back() {
+    void linked_list<T>::pop_back() {
         if (tail == nullptr) { return; }
-        database::core::list::node<T>* new_last = tail->prev;
+        node<T>* new_last = tail->prev;
         delete tail;
         tail = new_last;
         if (tail == nullptr) {
@@ -174,8 +172,8 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::push_front(T data) {
-        database::core::list::node<T>* new_node = new node(data);
+    void linked_list<T>::push_front(T data) {
+        node<T>* new_node = new node(data);
         if (head == nullptr) {
             // empty
             head = new_node;
@@ -193,9 +191,9 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::pop_front() {
+    void linked_list<T>::pop_front() {
         if (head == nullptr) { return; }
-        database::core::list::node<T>* new_first = head->next;
+        node<T>* new_first = head->next;
         delete head;
         head = new_first;
         if (head == nullptr) {
@@ -209,7 +207,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::copyTo(linked_list<T>* anotherList) {
+    void linked_list<T>::copyTo(linked_list<T>* anotherList) {
         auto currentNode = head;
         while (currentNode != nullptr)
         {
@@ -220,7 +218,3 @@ namespace list {
 
 
 #pragma endregion
-
-} // database::core::list
-}
-}

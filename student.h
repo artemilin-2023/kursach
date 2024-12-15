@@ -9,33 +9,29 @@
 
 using std::string;
 
-namespace database {
-    namespace entities {
-        class student {
-        public:
-            string firstName;
-            string lastName;
-            string patronymic;
-            string dateOfBirth;
-            string group;
-            string address;
-            string examResult;
+class student {
+public:
+    string firstName;
+    string lastName;
+    string patronymic;
+    string dateOfBirth;
+    string group;
+    string address;
+    string examResult;
 
 
-            student(
-                string firstName,
-                string lastName,
-                string patronymic,
-                string dateOfBirth,
-                string group,
-                string address,
-                string examResult
-            );
+    student(
+        string firstName,
+        string lastName,
+        string patronymic,
+        string dateOfBirth,
+        string group,
+        string address,
+        string examResult
+    );
 
-            friend std::ostream& operator<<(std::ostream& os, const student& s);
-        };
-    }
-}
+    friend std::ostream& operator<<(std::ostream& os, const student& s);
+};
 
 #endif
 

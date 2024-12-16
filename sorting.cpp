@@ -14,7 +14,7 @@ namespace sorting {
     }
 
     template<class T>
-    void quick_sort(linked_list<T>* list, std::function<bool(const T&, const T&)> comparator) {
+    void quick_sort(linked_list<T>* list, std::function<int(const T&, const T&)> comparator) {
 
         std::stack<std::pair<int, int>> sort_stack{};
         sort_stack.emplace(0, list->size() - 1);
@@ -29,20 +29,13 @@ namespace sorting {
             int i = low_i - 1, j = high_i + 1;
 
             while (true) {
-                node<T>* currentNode;
                 do {
                     i++;
-                    currentNode = list->nodeAt(i);
-                    if (currentNode == nullptr)
-                        break;
-                } while (!comparator(currentNode->data, pivot));
+                } while (comparator(list->nodeAt(i)->data, pivot) < 0);
 
                 do {
                     j--;
-                    currentNode = list->nodeAt(j);
-                    if (currentNode == nullptr)
-                        break;
-                } while (comparator(currentNode->data, pivot));
+                } while (comparator(list->nodeAt(j)->data, pivot) > 0);
 
                 if (i >= j)
                     break;

@@ -115,7 +115,7 @@ namespace database {
     }
 
     template<class T>
-    linked_list<T>* database_c<T>::orderBy(std::function<bool(const T&, const T&)> comparator) {
+    linked_list<T>* database_c<T>::orderBy(std::function<int(const T&, const T&)> comparator) {
         auto resultList = new linked_list<T>();
         data->copyTo(resultList);
 
@@ -128,7 +128,7 @@ namespace database {
         auto resultList = new linked_list<T>();
         auto currentNode = data->begin();
 
-        while (currentNode != nullptr) {
+        while (currentNode != data->end()) {
             if (selector(currentNode->data))
                 resultList->push_back(currentNode->data);
             currentNode = currentNode->next;

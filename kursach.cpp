@@ -30,7 +30,11 @@ int main()
     db.commitTransaction();
 
     auto sorted = db.orderBy([](const student& s1, const student& s2) {
-        return s1.firstName > s2.firstName;
+        if (s1.firstName < s2.firstName)
+            return -1;
+        else if (s1.firstName > s2.firstName)
+            return 1;
+        return 0;
         });
 
     auto selected = db.selectBy([](const student& s) {

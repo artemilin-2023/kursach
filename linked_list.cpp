@@ -212,14 +212,13 @@ namespace list {
         auto currentNode = head;
         while (currentNode != nullptr)
         {
-            anotherList->push_back(currentNode);
-            currentNode = currentNode.next;
+            anotherList->push_back(currentNode->data);
+            currentNode = currentNode->next;
         }
     }
 
 
 #pragma endregion
-
-} // database::core::list
+}
 }
 }

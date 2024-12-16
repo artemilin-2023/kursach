@@ -24,16 +24,16 @@ namespace database {
 
     template<class T>
     database_c<T>::~database_c() {
-        data.~linked_list();
+        data->~linked_list();
     }
 
     template<class T>
-    linked_list<T> database_c<T>::readFrom(string path) {
+    linked_list<T>* database_c<T>::readFrom(string path) {
         std::fstream file_input(path);
         
         try {
             if (!file_input.good() || file_input.peek() == EOF)
-                return linked_list<T>{};
+                return new linked_list<T>{};
 
             string line;
             auto result = new linked_list<T>{};
@@ -41,7 +41,7 @@ namespace database {
             {
                 auto entityData = helpers::parse_row(line, columnDelimiter);
                 T entity = helpers::map(entityData);
-                *result.push_back(entity);
+                result->push_back(entity);
             }
 
             file_input.close();
@@ -61,8 +61,8 @@ namespace database {
             if (!file_output.good())
                 throw std::runtime_error("Can't open the file on the path: " + path);
 
-            for (int i = 0; i < data.size(); i++) {
-                auto entityData = helpers::map(data.nodeAt(i)->data);
+            for (int i = 0; i < data->size(); i++) {
+                auto entityData = helpers::map(data->nodeAt(i)->data);
                 for (int j = 0; j < entityData.size(); j++) {
                     file_output << entityData[j];
                     if (j != entityData.size() - 1)
@@ -89,7 +89,7 @@ namespace database {
         if (!hasActiveTransaction)
             throw std::runtime_error("Start the transaction before adding.");
 
-        data.push_back(item);
+        data->push_back(item);
     }
 
     template<class T>
@@ -100,7 +100,7 @@ namespace database {
         if (id < 0 || id >= data.size())
             throw std::invalid_argument("Entity with id " + std::to_string(id) + " don't exist.");
 
-        data.erase(id);
+        data->erase(id);
     }
 
     template<class T>
@@ -109,21 +109,21 @@ namespace database {
             std::cout << divider << std::setw(width) << header;
         std::cout << divider << '\n';
 
-        for (int i = 0; i < data.size(); i++)
-            std::cout << divider << i << std::setw(width) << data.nodeAt(i)->data << '\n';
+        for (int i = 0; i < data->size(); i++)
+            std::cout << divider << i << std::setw(width) << data->nodeAt(i)->data << '\n';
     }
 
     template<class T>
-    linked_list<T> database_c<T>::orderBy(std::function<bool(const T&, const T&)> comparator) {
-        auto resultList = linked_list<T>();
-        data.copyTo(&resultList);
+    linked_list<T>* database_c<T>::orderBy(std::function<bool(const T&, const T&)> comparator) {
+        auto resultList = new linked_list<T>();
+        data->copyTo(resultList);
 
-        quick_sort(resultList, comparator);
+        database::core::sorting::quick_sort(resultList, comparator);
         return resultList;
     }
 
     template<class T>
-    linked_list<T> database_c<T>::selectBy(std::string query) {
+    linked_list<T>* database_c<T>::selectBy(std::string query) {
         // pass
     }
 

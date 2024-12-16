@@ -33,9 +33,6 @@
     <ClInclude Include="sorting.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="student.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -47,7 +44,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="database.cpp">
+    <ClCompile Include="student.cpp">
+      <Filter>Исходные файлы\database\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="kursach.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers.cpp">
       <Filter>Исходные файлы\database</Filter>
     </ClCompile>
     <ClCompile Include="linked_list.cpp">
@@ -56,13 +59,7 @@
     <ClCompile Include="sorting.cpp">
       <Filter>Исходные файлы\database\core</Filter>
     </ClCompile>
-    <ClCompile Include="student.cpp">
-      <Filter>Исходные файлы\database\entities</Filter>
-    </ClCompile>
-    <ClCompile Include="kursach.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="helpers.cpp">
+    <ClCompile Include="database.cpp">
       <Filter>Исходные файлы\database</Filter>
     </ClCompile>
   </ItemGroup>

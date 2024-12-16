@@ -35,7 +35,7 @@ namespace database {
         bool deleteBy(int id);
         void print(std::vector<std::string> headers, string divider, int width = 20);
         linked_list<T>* orderBy(std::function<bool(const T&, const T&)> comparator);
-        linked_list<T>* selectBy(string query);
+        linked_list<T>* selectBy(std::function<bool(const T&)> selector);
         void startTransaction();
         bool commitTransaction();
     };

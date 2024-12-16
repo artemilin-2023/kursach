@@ -12,8 +12,6 @@ int main()
     auto db = database::database_c<student>("data.db");
 
     auto sorted = db.orderBy([](const student& s1, const student& s2) {
-        if (&s1 == nullptr || &s2 == nullptr)
-            return false;
         return s1.firstName > s2.firstName;
         });
 

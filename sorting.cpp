@@ -29,13 +29,20 @@ namespace sorting {
             int i = low_i - 1, j = high_i + 1;
 
             while (true) {
+                node<T>* currentNode;
                 do {
                     i++;
-                } while (!comparator(list->nodeAt(i)->data, pivot) && i < list->size() && i > 0);
+                    currentNode = list->nodeAt(i);
+                    if (currentNode == nullptr)
+                        break;
+                } while (!comparator(currentNode->data, pivot) && i < list->size() && i > 0);
 
                 do {
                     j--;
-                } while (comparator(list->nodeAt(j)->data, pivot) && j > 0 && j < list->size());
+                    currentNode = list->nodeAt(j);
+                    if (currentNode == nullptr)
+                        break;
+                } while (comparator(currentNode->data, pivot) && j > 0 && j < list->size());
 
                 if (i >= j)
                     break;

@@ -123,8 +123,16 @@ namespace database {
     }
 
     template<class T>
-    linked_list<T>* database_c<T>::selectBy(std::string query) {
-        // pass
+    linked_list<T>* database_c<T>::selectBy(std::function<bool(const T&)> selector) {
+        auto resultList = new linked_list<T>();
+        auto currentNode = data->begin();
+
+        while (currentNode != nullptr) {
+            if (selector(currentNode->data))
+                resultList->pushBack(currentNode->data);
+            currentNode = currentNode->next;
+        }
+        return resultList;
     }
 
     template<class T>

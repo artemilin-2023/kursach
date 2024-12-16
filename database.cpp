@@ -97,10 +97,11 @@ namespace database {
         if (!hasActiveTransaction)
             throw std::runtime_error("Start the transaction before deleting.");
 
-        if (id < 0 || id >= data.size())
-            throw std::invalid_argument("Entity with id " + std::to_string(id) + " don't exist.");
+        if (id < 0 || id >= data->size())
+            return false;
 
         data->erase(id);
+        return true;
     }
 
     template<class T>
@@ -129,7 +130,7 @@ namespace database {
 
         while (currentNode != nullptr) {
             if (selector(currentNode->data))
-                resultList->pushBack(currentNode->data);
+                resultList->push_back(currentNode->data);
             currentNode = currentNode->next;
         }
         return resultList;

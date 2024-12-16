@@ -35,14 +35,14 @@ namespace sorting {
                     currentNode = list->nodeAt(i);
                     if (currentNode == nullptr)
                         break;
-                } while (!comparator(currentNode->data, pivot) && i < list->size() && i > 0);
+                } while (!comparator(currentNode->data, pivot));
 
                 do {
                     j--;
                     currentNode = list->nodeAt(j);
                     if (currentNode == nullptr)
                         break;
-                } while (comparator(currentNode->data, pivot) && j > 0 && j < list->size());
+                } while (comparator(currentNode->data, pivot));
 
                 if (i >= j)
                     break;
@@ -54,9 +54,6 @@ namespace sorting {
             sort_stack.emplace(j + 1, high_i);
         }
     }
-
-    
-
 }
 }
 }

@@ -42,6 +42,9 @@
     <ClInclude Include="helpers.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="stack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="student.cpp">
@@ -53,14 +56,8 @@
     <ClCompile Include="helpers.cpp">
       <Filter>Исходные файлы\database</Filter>
     </ClCompile>
-    <ClCompile Include="linked_list.cpp">
+    <ClCompile Include="stack.cpp">
       <Filter>Исходные файлы\database\core</Filter>
-    </ClCompile>
-    <ClCompile Include="sorting.cpp">
-      <Filter>Исходные файлы\database\core</Filter>
-    </ClCompile>
-    <ClCompile Include="database.cpp">
-      <Filter>Исходные файлы\database</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ int main()
 {
     auto db = database::database_c<student>("data.db");
     
-    auto person1 = student("a", "a", "a", "a", "a", "a", "a");
+    /*auto person1 = student("a", "a", "a", "a", "a", "a", "a");
     auto person2 = student("b", "a", "a", "a", "a", "a", "a");
     auto person3 = student("c", "a", "a", "a", "a", "a", "a");
     auto person4 = student("d", "a", "a", "a", "a", "a", "a");
@@ -27,7 +27,7 @@ int main()
     db.add(person5);
     db.add(person4);
 
-    db.commitTransaction();
+    db.commitTransaction();*/
 
     auto sorted = db.orderBy([](const student& s1, const student& s2) {
         if (s1.firstName < s2.firstName)

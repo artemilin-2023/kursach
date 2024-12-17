@@ -1,4 +1,4 @@
-#include <stack>
+#include "stack.h"
 
 using database::core::list::node;
 
@@ -16,8 +16,8 @@ namespace sorting {
     template<class T>
     void quick_sort(linked_list<T>* list, std::function<int(const T&, const T&)> comparator) {
 
-        std::stack<std::pair<int, int>> sort_stack{};
-        sort_stack.emplace(0, list->size() - 1);
+        database::core::stack::stack<std::pair<int, int>> sort_stack = database::core::stack::stack<std::pair<int, int>>();
+        sort_stack.push(std::pair(0, list->size() - 1));
 
         while (!sort_stack.empty()) {
             auto [low_i, high_i] = sort_stack.top();
@@ -43,8 +43,8 @@ namespace sorting {
                 swap(list->nodeAt(i), list->nodeAt(j));
             }
 
-            sort_stack.emplace(low_i, j);
-            sort_stack.emplace(j + 1, high_i);
+            sort_stack.push(std::pair(low_i, j));
+            sort_stack.push(std::pair(j + 1, high_i));
         }
     }
 }

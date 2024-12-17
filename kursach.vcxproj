@@ -24,6 +24,7 @@
     <ClInclude Include="linked_list.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="sorting.h" />
+    <ClInclude Include="stack.h" />
     <ClInclude Include="student.h" />
   </ItemGroup>
   <ItemGroup>

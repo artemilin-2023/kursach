@@ -11,6 +11,8 @@
 namespace app {
 
 	void print_table(std::vector<std::string> headers, database::core::list::linked_list<database::entities::student>* data);
+	void print_main_menu();
+	std::string get_user_input(std::string prompt);
 }
 
 

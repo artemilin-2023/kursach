@@ -2,6 +2,8 @@
 //
 
 #include <iostream>
+#include <thread>
+#include <chrono>
 #include "database.h"
 #include "student.h"
 #include "console_table.h"
@@ -11,10 +13,13 @@ using database::entities::student;
 using ConsoleTable = samilton::ConsoleTable;
 
 const std::vector<std::string> headers = { "i", "FIRST NAME", "LAST NAME", "PATRONYMIC", "DATE OF BIRTH", "GROUP", "ADDRESS", "EXAM RESULT" };
-
+const int sleepTime = 600;
 
 int main()
 {
+    setlocale(LC_ALL, "");
+    std::cout << "КУРСАВАЯ РАБОТА ПО ПРОГРАММИРОВАНИЮ | ИЛЬИН АРТЁМ АЛЕКСАНДРОВИЧ | ВАРИАНТ №3" << '\n';
+    std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
     auto db = database::database_c<student>("data.db");
     
     /*auto person1 = student("a", "a", "a", "a", "a", "a", "a");
@@ -34,26 +39,9 @@ int main()
     db.add(person4);
 
     db.commitTransaction();*/
-
-    auto sorted = db.orderBy([](const student& s1, const student& s2) {
-        if (s1.firstName < s2.firstName)
-            return -1;
-        else if (s1.firstName > s2.firstName)
-            return 1;
-        return 0;
-        });
-
-    app::print_table(headers, db.getAll());
-
-    
-    app::print_table(headers, sorted);
-
-
-    auto selected = db.selectBy([](const student& s) {
-        return s.firstName == "b" || s.firstName == "a";
-        });
-
-    app::print_table(headers, selected);
+    app::print_main_menu();
+    auto res = app::get_user_input("Введите что-то");
+    std::cout << res;
 
     system("pause");
 }
@@ -79,3 +67,22 @@ void app::print_table(std::vector<std::string> headers, database::core::list::li
     std::cout << table;
 }
 
+void app::print_main_menu() {
+    system("cls");
+    std::cout
+        << "________________________________" << '\n'
+        << "Опции:" << '\n'
+        << "1. Добавить запись" << '\n'
+        << "2. Удалить запись" << '\n'
+        << "3. Выборка по условию" << '\n'
+        << "4. Сортировка по условию" << '\n'
+        << "5. Печать таблицы" << '\n';
+}
+
+std::string app::get_user_input(std::string prompt) {
+    std::cout 
+        << "------" << '\n'
+        << prompt << "> ";
+    std::string res; std::cin >> res;
+    return res;
+}

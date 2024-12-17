@@ -4,8 +4,14 @@
 #include <iostream>
 #include "database.h"
 #include "student.h"
+#include "console_table.h"
+#include "kursach.h"
 
 using database::entities::student;
+using ConsoleTable = samilton::ConsoleTable;
+
+const std::vector<std::string> headers = { "i", "FIRST NAME", "LAST NAME", "PATRONYMIC", "DATE OF BIRTH", "GROUP", "ADDRESS", "EXAM RESULT" };
+
 
 int main()
 {
@@ -37,8 +43,39 @@ int main()
         return 0;
         });
 
+    app::print_table(headers, db.getAll());
+
+    
+    app::print_table(headers, sorted);
+
+
     auto selected = db.selectBy([](const student& s) {
-        return s.firstName == "AA" || s.address == "a";
+        return s.firstName == "b" || s.firstName == "a";
         });
 
+    app::print_table(headers, selected);
+
+    system("pause");
 }
+
+void app::print_table(std::vector<std::string> headers, database::core::list::linked_list<student>* data) {
+    ConsoleTable table(2, 2, samilton::Alignment::centre);
+    table.addRow(headers);
+
+    int i = 0;
+    for (auto node = data->begin(); node != data->end(); node = node->next, i++) {
+        auto student = node->data;
+        table.addRow({
+            std::to_string(i),
+            student.firstName,
+            student.lastName,
+            student.patronymic,
+            student.dateOfBirth,
+            student.group,
+            student.address,
+            student.examResult
+            });
+    }
+    std::cout << table;
+}
+

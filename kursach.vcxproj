@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="console_table.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="helpers.h" />
+    <ClInclude Include="kursach.h" />
     <ClInclude Include="linked_list.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="sorting.h" />

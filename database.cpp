@@ -105,16 +105,6 @@ namespace database {
     }
 
     template<class T>
-    void database_c<T>::print(std::vector<std::string> headers, string divider, int width) {
-        for (auto header : headers)
-            std::cout << divider << std::setw(width) << header;
-        std::cout << divider << '\n';
-
-        for (int i = 0; i < data->size(); i++)
-            std::cout << divider << i << std::setw(width) << data->nodeAt(i)->data << '\n';
-    }
-
-    template<class T>
     linked_list<T>* database_c<T>::orderBy(std::function<int(const T&, const T&)> comparator) {
         auto resultList = new linked_list<T>();
         data->copyTo(resultList);
@@ -134,6 +124,11 @@ namespace database {
             currentNode = currentNode->next;
         }
         return resultList;
+    }
+
+    template<class T>
+    linked_list<T>* database_c<T>::getAll() {
+        return data;
     }
 
     template<class T>

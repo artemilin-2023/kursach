@@ -1,7 +1,10 @@
 #include "student.h"
+#include <iomanip>
 
 namespace database {
     namespace entities {
+
+        const int outputWidth = 7;
 
         student::student() { }
 
@@ -25,13 +28,13 @@ namespace database {
 
         std::ostream& operator<<(std::ostream& os, const student& s) {
             os << " | "
-                << s.firstName << " | "
-                << s.lastName << " | "
-                << s.patronymic << " | "
-                << s.dateOfBirth << " | "
-                << s.group << " | "
-                << s.address << " | "
-                << s.examResult << " | ";
+                << std::setw(outputWidth)  << s.firstName << std::setw(outputWidth) << " | "
+                << std::setw(outputWidth)  << s.lastName << std::setw(outputWidth) << " | "
+                << std::setw(outputWidth)  << s.patronymic << std::setw(outputWidth) << " | "
+                << std::setw(outputWidth)  << s.dateOfBirth << std::setw(outputWidth) << " | "
+                << std::setw(outputWidth)  << s.group << std::setw(outputWidth) << " | "
+                << std::setw(outputWidth)  << s.address << std::setw(outputWidth) << " | "
+                << std::setw(outputWidth)  << s.examResult << std::setw(outputWidth) << " | ";
 
             return os;
         }

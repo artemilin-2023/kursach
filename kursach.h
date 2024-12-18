@@ -18,11 +18,11 @@ namespace app {
 	bool is_exist_command(std::string command);
 	std::function<void(const database::database<student>)> get_handler_for_command(int command);
 	// handlers
-	void app::add_record_handler(database::database<student> db);
-	void app::delete_record_handler(database::database<student> db);
-	void app::selection_handler(database::database<student> db);
-	void app::filtration_handler(database::database<student> db);
-	void app::print_table_handler(database::database<student> db);
+	void add_record_handler(database::database<student> db);
+	void delete_record_handler(database::database<student> db);
+	void selection_handler(database::database<student> db);
+	void filtration_handler(database::database<student> db);
+	void print_table_handler(database::database<student> db);
 }
 
 

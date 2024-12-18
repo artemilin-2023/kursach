@@ -4,46 +4,52 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <set>
+
 #include "database.h"
 #include "student.h"
 #include "console_table.h"
 #include "kursach.h"
 
+
 using database::entities::student;
 using ConsoleTable = samilton::ConsoleTable;
 
 const std::vector<std::string> headers = { "i", "FIRST NAME", "LAST NAME", "PATRONYMIC", "DATE OF BIRTH", "GROUP", "ADDRESS", "EXAM RESULT" };
-const int sleepTime = 600;
+//const int sleepTime = 600;
 
 int main()
 {
     setlocale(LC_ALL, "");
     std::cout << "КУРСАВАЯ РАБОТА ПО ПРОГРАММИРОВАНИЮ | ИЛЬИН АРТЁМ АЛЕКСАНДРОВИЧ | ВАРИАНТ №3" << '\n';
-    std::this_thread::sleep_for(std::chrono::milliseconds(sleepTime));
-    auto db = database::database_c<student>("data.db");
     
-    /*auto person1 = student("a", "a", "a", "a", "a", "a", "a");
-    auto person2 = student("b", "a", "a", "a", "a", "a", "a");
-    auto person3 = student("c", "a", "a", "a", "a", "a", "a");
-    auto person4 = student("d", "a", "a", "a", "a", "a", "a");
-    auto person5 = student("e", "a", "a", "a", "a", "a", "a");
-    auto person6 = student("f", "a", "a", "a", "a", "a", "a");
-
-    db.startTransaction();
+    app::run();
     
-    db.add(person3);
-    db.add(person2);
-    db.add(person1);
-    db.add(person6);
-    db.add(person5);
-    db.add(person4);
-
-    db.commitTransaction();*/
-    app::print_main_menu();
-    auto res = app::get_user_input("Введите что-то");
-    std::cout << res;
-
     system("pause");
+    return 0;
+}
+
+void app::run() {
+    
+    auto database = database::database<student>("data.db");
+    
+    while (true) {
+
+        app::print_main_menu();
+        auto user_input = app::get_user_input("выберите действие");
+
+       while (!app::is_exist_command(user_input)) {
+            std::cout << "Введенной команды не существует. Выберите команду из предложенных (ввод должен быть целым числом)." << '\n';
+            continue;
+       }
+
+        auto command = std::atoi(user_input.c_str());
+        if (command == -1) // exit from program
+            break;
+
+        auto handler = get_handler_for_command(command);
+        handler(database);
+    }
 }
 
 void app::print_table(std::vector<std::string> headers, database::core::list::linked_list<student>* data) {
@@ -62,21 +68,21 @@ void app::print_table(std::vector<std::string> headers, database::core::list::li
             student.group,
             student.address,
             student.examResult
-            });
+        });
     }
     std::cout << table;
 }
 
 void app::print_main_menu() {
-    system("cls");
     std::cout
         << "________________________________" << '\n'
         << "Опции:" << '\n'
-        << "1. Добавить запись" << '\n'
-        << "2. Удалить запись" << '\n'
-        << "3. Выборка по условию" << '\n'
-        << "4. Сортировка по условию" << '\n'
-        << "5. Печать таблицы" << '\n';
+        << "1.  Добавить записи" << '\n'
+        << "2.  Удалить запись" << '\n'
+        << "3.  Выборка по условию" << '\n'
+        << "4.  Сортировка по условию" << '\n'
+        << "5.  Печать таблицы" << '\n'
+        << "-1. Выход" << '\n';
 }
 
 std::string app::get_user_input(std::string prompt) {
@@ -85,4 +91,45 @@ std::string app::get_user_input(std::string prompt) {
         << prompt << "> ";
     std::string res; std::cin >> res;
     return res;
+}
+
+bool app::is_exist_command(string command) {
+    auto commands = std::set<string>{ "1", "2", "3", "4", "5", "-1" };
+    return commands.contains(command);
+}
+
+std::function<void(database::database<student>)> app::get_handler_for_command(int command) {
+    switch (command)
+    {
+    case 1:
+        return app::add_record_handler;
+    case 2:
+        return app::delete_record_handler;
+    case 3:
+        return app::selection_handler;
+    case 4:
+        return app::filtration_handler;
+    case 5:
+        return app::print_table_handler;
+    }
+}
+
+void app::add_record_handler(database::database<student> db) {
+
+}
+
+void app::delete_record_handler(database::database<student> db) {
+
+}
+
+void app::selection_handler(database::database<student> db) {
+
+}
+
+void app::filtration_handler(database::database<student> db) {
+
+}
+
+void app::print_table_handler(database::database<student> db) {
+
 }

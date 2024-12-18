@@ -14,7 +14,7 @@ using database::core::list::linked_list;
 namespace database {
 
     template<class T>
-    class database_c {
+    class database {
     private:
         // properties
         bool hasActiveTransaction;
@@ -27,8 +27,8 @@ namespace database {
         void writeTo(string path);
     public:
         // constructors
-        database_c(string path);
-        ~database_c();
+        database(string path);
+        ~database();
 
         // methods
         void add(T item);

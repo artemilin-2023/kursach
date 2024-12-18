@@ -16,19 +16,19 @@ namespace database {
     const string columnDelimiter = " | ";
 
     template<class T>
-    database_c<T>::database_c(string path) {
+    database<T>::database(string path) {
         this->path = path;
         hasActiveTransaction = false;
         data = readFrom(path);
     }
 
     template<class T>
-    database_c<T>::~database_c() {
+    database<T>::~database() {
         data->~linked_list();
     }
 
     template<class T>
-    linked_list<T>* database_c<T>::readFrom(string path) {
+    linked_list<T>* database<T>::readFrom(string path) {
         std::fstream file_input(path);
         
         try {
@@ -54,7 +54,7 @@ namespace database {
     }
 
     template<class T>
-    void database_c<T>::writeTo(string path) {
+    void database<T>::writeTo(string path) {
         std::fstream file_output(path, std::ios::out | std::ios::trunc);
         
         try {
@@ -80,12 +80,12 @@ namespace database {
     }
 
     template<class T>
-    void database_c<T>::rollBack() {
+    void database<T>::rollBack() {
         data = readFrom(path);
     }
 
     template<class T>
-    void database_c<T>::add(T item) {
+    void database<T>::add(T item) {
         if (!hasActiveTransaction)
             throw std::runtime_error("Start the transaction before adding.");
 
@@ -93,7 +93,7 @@ namespace database {
     }
 
     template<class T>
-    bool database_c<T>::deleteBy(int id) {
+    bool database<T>::deleteBy(int id) {
         if (!hasActiveTransaction)
             throw std::runtime_error("Start the transaction before deleting.");
 
@@ -105,7 +105,7 @@ namespace database {
     }
 
     template<class T>
-    linked_list<T>* database_c<T>::orderBy(std::function<int(const T&, const T&)> comparator) {
+    linked_list<T>* database<T>::orderBy(std::function<int(const T&, const T&)> comparator) {
         auto resultList = new linked_list<T>();
         data->copyTo(resultList);
 
@@ -114,7 +114,7 @@ namespace database {
     }
 
     template<class T>
-    linked_list<T>* database_c<T>::selectBy(std::function<bool(const T&)> selector) {
+    linked_list<T>* database<T>::selectBy(std::function<bool(const T&)> selector) {
         auto resultList = new linked_list<T>();
         auto currentNode = data->begin();
 
@@ -127,12 +127,12 @@ namespace database {
     }
 
     template<class T>
-    linked_list<T>* database_c<T>::getAll() {
+    linked_list<T>* database<T>::getAll() {
         return data;
     }
 
     template<class T>
-    void database_c<T>::startTransaction() {
+    void database<T>::startTransaction() {
         if (hasActiveTransaction)
             throw std::runtime_error("Active transaction already exists.");
 
@@ -140,7 +140,7 @@ namespace database {
     }
 
     template<class T>
-    bool database_c<T>::commitTransaction() {
+    bool database<T>::commitTransaction() {
         if (!hasActiveTransaction)
             throw std::runtime_error("Start the transaction before commiting.");
 

@@ -1,6 +1,7 @@
 #include "stack.h"
 
 using database::core::list::node;
+using database::core::stack::stack;
 
 namespace database {
 namespace core {
@@ -16,7 +17,7 @@ namespace sorting {
     template<class T>
     void quick_sort(linked_list<T>* list, std::function<int(const T&, const T&)> comparator) {
 
-        database::core::stack::stack<std::pair<int, int>> sort_stack = database::core::stack::stack<std::pair<int, int>>();
+        auto sort_stack = stack<std::pair<int, int>>{};
         sort_stack.push(std::pair(0, list->size() - 1));
 
         while (!sort_stack.empty()) {

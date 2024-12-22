@@ -3,8 +3,6 @@
 #ifndef KURSACH_STACK_H
 #define KURSACH_STACK_H
 
-#include <optional>
-#include <iostream>
 
 namespace database {
     namespace core {

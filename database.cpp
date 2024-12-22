@@ -147,6 +147,7 @@ namespace database {
         try
         {
             writeTo(path);
+            hasActiveTransaction = false;
             return true;
         }
         catch (const std::exception& ex)
@@ -155,6 +156,7 @@ namespace database {
             std::cout << "rollbacking the transactioin...." << '\n';
             rollBack();
             std::cout << "rallback success." << '\n';
+            hasActiveTransaction = false;
             return false;
         }
     }

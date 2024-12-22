@@ -106,7 +106,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::erase(database::core::list::node<T>* node) {
+    void ::database::core::list::linked_list<T>::erase(::database::core::list::node<T>* node) {
         if (node == nullptr) {
             return;
         }
@@ -131,7 +131,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::erase(int index) {
+    void ::database::core::list::linked_list<T>::erase(int index) {
         erase(nodeAt(index));
     }
 

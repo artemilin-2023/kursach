@@ -17,6 +17,7 @@ namespace database {
             string lastName;
             string patronymic;
             string dateOfBirth;
+            string dateOfAdmission;
             string group;
             string address;
             string examResult;
@@ -28,6 +29,7 @@ namespace database {
                 string lastName,
                 string patronymic,
                 string dateOfBirth,
+                string dateOfAdmission,
                 string group,
                 string address,
                 string examResult

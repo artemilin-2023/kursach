@@ -3,7 +3,7 @@
 
 namespace helpers {
     student map(std::vector<std::string> data) {
-        return student(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+        return student(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
     }
 
     std::vector<std::string> map(student entity) {
@@ -12,6 +12,7 @@ namespace helpers {
             entity.lastName,
             entity.patronymic,
             entity.dateOfBirth,
+            entity.dateOfAdmission,
             entity.group,
             entity.address,
             entity.examResult

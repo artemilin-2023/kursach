@@ -30,6 +30,8 @@ namespace database {
                 node<T>* head;
                 node<T>* tail;
                 int _size;
+
+                void link_head_tail(node<T> head, node<T> tail);
             public:
                 linked_list();
 

@@ -33,7 +33,7 @@ namespace app {
 	bool is_number(const std::string& s);
 	void clear_console();
 	std::function<bool(const student&)> get_selector_by_field(int field, std::string key);
-	std::function<bool(const student&, const student&)> get_comparator_by_field(int field);
+	std::function<int(const student&, const student&)> get_comparator_by_field(int field);
 }
 
 

@@ -48,5 +48,5 @@ void quick_sort(linked_list<T>* list, std::function<int(const T&, const T&)> com
     }
 }
 }
-    }
+}
 }

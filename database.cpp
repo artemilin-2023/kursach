@@ -109,7 +109,7 @@ namespace database {
         auto resultList = new linked_list<T>();
         data->copyTo(resultList);
 
-        database::core::sorting::quick_sort(resultList, comparator);
+        ::database::core::sorting::quick_sort(resultList, comparator);
         return resultList;
     }
 
@@ -118,11 +118,12 @@ namespace database {
         auto resultList = new linked_list<T>();
         auto currentNode = data->begin();
 
-        while (currentNode != data->end()) {
+        do {
             if (selector(currentNode->data))
                 resultList->push_back(currentNode->data);
             currentNode = currentNode->next;
-        }
+        } while (currentNode != data->begin());
+
         return resultList;
     }
 

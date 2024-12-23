@@ -13,6 +13,7 @@ namespace database {
             string lastName,
             string patronymic,
             string dateOfBirth,
+            string dateOfAdmission,
             string group,
             string address,
             string examResult) 
@@ -21,6 +22,7 @@ namespace database {
             this->lastName = lastName;
             this->patronymic = patronymic;
             this->dateOfBirth = dateOfBirth;
+            this->dateOfAdmission = dateOfAdmission;
             this->group = group;
             this->address = address;
             this->examResult = examResult;

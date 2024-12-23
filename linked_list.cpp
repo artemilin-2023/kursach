@@ -143,10 +143,7 @@ namespace list {
             head = new_node;
             tail = new_node;
 
-            tail->prev = head;
-            tail->next = head;
-            head->next = tail;
-            head->prev = tail;
+            link_head_tail(head, tail);
         }
         else {
             // link tail node to ours
@@ -188,10 +185,7 @@ namespace list {
             head = new_node;
             tail = new_node;
 
-            head->next = tail;
-            head->prev = tail;
-            tail->next = head;
-            tail->prev = head;
+            link_head_tail(head, tail);
         }
         else {
             // link head node to ours
@@ -205,6 +199,14 @@ namespace list {
             tail->next = head;
         }
         _size++;
+    }
+
+    template<class T>
+    void database::core::list::linked_list<T>::link_head_tail(node<T> head, node<T> tail){
+        head->next = tail;
+        head->prev = tail;
+        tail->next = head;
+        tail->prev = head;
     }
 
     template<class T>
@@ -226,11 +228,13 @@ namespace list {
     template<class T>
     void database::core::list::linked_list<T>::copyTo(linked_list<T>* anotherList) {
         auto currentNode = head;
-        while (currentNode != end())
-        {
+        if (currentNode == nullptr)
+            return;
+
+        do {
             anotherList->push_back(currentNode->data);
             currentNode = currentNode->next;
-        }
+        } while (currentNode != begin());
     }
 
 

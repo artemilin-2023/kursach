@@ -1,21 +1,9 @@
-f | a | a | a | a | a | a
-e | a | a | a | a | a | a
-d | a | a | a | a | a | a
-c | a | a | a | a | a | a
-b | a | a | a | a | a | a
-a | a | a | a | a | a | a
-f | a | a | a | a | a | a
-e | a | a | a | a | a | a
-d | a | a | a | a | a | a
-c | a | a | a | a | a | a
-b | a | a | a | a | a | a
-a | a | a | a | a | a | a
-f | a | a | a | a | a | a
-e | a | a | a | a | a | a
-d | a | a | a | a | a | a
-c | a | a | a | a | a | a
-b | a | a | a | a | a | a
-a | a | a | a | a | a | a
-f | a | a | a | a | a | a
-Артём | Ильин | Александрович | 07.09.2005 | М3О-207Б-23 | г. Москва, ул. Секретная | нет долгов
-artem | ilin | aleksandrovich | 07/09/2005 | M3O-207B-23 | asdf | exams pass
+from file | from file | from file | from file | from file | from file | from file | from file
+zaza | docker | providing | aaaa | docker docker | aaaaa | docker docker docker | docker docker
+artem | ilin | aleksandrovich | 07.09.2005 | 01.09.2023 | М3О-207Б-23 | Moscow | нет долгов
+Артём | Ильин | Александрович | 09.09.2005 | 01.09.2023 | М3О-207Б-23 | г. Москва, ул. Секретная | нет долгов
+from file | from file | from file | from file | from file | from file | from file | from file
+zaza | docker | providing | aaaa | docker docker | aaaaa | docker docker docker | docker docker
+a | a | a | a | a | a | a | a
+c | c | c | c | c | c | c | c
+b | b | b | b | b | b | b | b

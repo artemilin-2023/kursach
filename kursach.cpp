@@ -16,7 +16,7 @@
 using database::entities::student;
 using ConsoleTable = samilton::ConsoleTable;
 
-const std::vector<std::string> headers = { "i", "FIRST NAME", "LAST NAME", "PATRONYMIC", "DATE OF BIRTH", "GROUP", "ADDRESS", "EXAM RESULT" };
+const std::vector<std::string> headers = { "i", "FIRST NAME", "LAST NAME", "PATRONYMIC", "DATE OF BIRTH", "DATE OF ADMISSION", "GROUP", "ADDRESS", "EXAM RESULT" };
 //const int sleepTime = 600;
 
 int main()
@@ -80,6 +80,7 @@ void app::print_table(std::vector<std::string> headers, database::core::list::li
             student.lastName,
             student.patronymic,
             student.dateOfBirth,
+            student.dateOfAdmission,
             student.group,
             student.address,
             student.examResult
@@ -153,11 +154,12 @@ void app::add_record_by_manual_input(database::database<student>* db) {
     auto lastName = app::get_user_input("введите фамилию");
     auto patronymic = app::get_user_input("введите отчество");
     auto dateOfBirth = app::get_user_input("введите дату рождения");
+    auto dateOfAdmission = app::get_user_input("введите дату поступления");
     auto group = app::get_user_input("введите номер группы");
     auto address = app::get_user_input("введите адрес проживания");
     auto examResult = app::get_user_input("введите результаты сессии (есть долги/нет долгов)");
 
-    auto newStudent = student(firstName, lastName, patronymic, dateOfBirth, group, address, examResult);
+    auto newStudent = student(firstName, lastName, patronymic, dateOfBirth, dateOfAdmission, group, address, examResult);
 
     db->startTransaction();
     db->add(newStudent);
@@ -227,6 +229,7 @@ void app::selection_handler(database::database<student> *db) {
 
     auto key = app::get_user_input("введите критерий выборки (" + headers[field] + " == your_key)");
     auto selector = app::get_selector_by_field(field, key);
+    std::cout << field << " " << key << '\n';
 
     auto selectionResult = db->selectBy(selector);
     app::print_table(headers, selectionResult);
@@ -253,13 +256,17 @@ std::function<bool(const student&)> app::get_selector_by_field(int field, std::s
             };
     case 5:
         return [key](const student& s) {
-            return s.group == key;
+            return s.dateOfAdmission == key;
             };
     case 6:
         return [key](const student& s) {
-            return s.address == key;
+            return s.group == key;
             };
     case 7:
+        return [key](const student& s) {
+            return s.address == key;
+            };
+    case 8:
         return [key](const student& s) {
             return s.examResult == key;
             };
@@ -289,13 +296,69 @@ void app::filtration_handler(database::database<student> *db) {
     app::print_table(headers, sorted);
 }
 
-std::function<bool(const student&, const student&)> app::get_comparator_by_field(int field) {
+std::function<int(const student&, const student&)> app::get_comparator_by_field(int field) {
     switch (field) {
     case 1:
         return [](const student& s1, const student& s2) {
             if (s1.firstName > s2.firstName)
                 return 1;
             else if (s1.firstName == s2.firstName)
+                return 0;
+            return -1;
+            };
+    case 2:
+        return [](const student& s1, const student& s2) {
+            if (s1.lastName > s2.lastName)
+                return 1;
+            else if (s1.lastName == s2.lastName)
+                return 0;
+            return -1;
+            };
+    case 3:
+        return [](const student& s1, const student& s2) {
+            if (s1.patronymic > s2.patronymic)
+                return 1;
+            else if (s1.patronymic == s2.patronymic)
+                return 0;
+            return -1;
+            };
+    case 4:
+        return [](const student& s1, const student& s2) {
+            if (s1.dateOfBirth > s2.dateOfBirth)
+                return 1;
+            else if (s1.dateOfBirth == s2.dateOfBirth)
+                return 0;
+            return -1;
+            };
+    case 5:
+        return [](const student& s1, const student& s2) {
+            if (s1.dateOfAdmission > s2.dateOfAdmission)
+                return 1;
+            else if (s1.dateOfAdmission == s2.dateOfAdmission)
+                return 0;
+            return -1;
+            };
+    case 6:
+        return [](const student& s1, const student& s2) {
+            if (s1.group > s2.group)
+                return 1;
+            else if (s1.group == s2.group)
+                return 0;
+            return -1;
+            };
+    case 7:
+        return [](const student& s1, const student& s2) {
+            if (s1.address > s2.address)
+                return 1;
+            else if (s1.address == s2.address)
+                return 0;
+            return -1;
+            };
+    case 8:
+        return [](const student& s1, const student& s2) {
+            if (s1.examResult > s2.examResult)
+                return 1;
+            else if (s1.examResult == s2.examResult)
                 return 0;
             return -1;
             };

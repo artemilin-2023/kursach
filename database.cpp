@@ -118,11 +118,17 @@ namespace database {
         auto resultList = new linked_list<T>();
         auto currentNode = data->begin();
 
-        do {
+        while (currentNode != nullptr) {
             if (selector(currentNode->data))
                 resultList->push_back(currentNode->data);
             currentNode = currentNode->next;
-        } while (currentNode != data->begin());
+        }
+
+       /* do {
+            if (selector(currentNode->data))
+                resultList->push_back(currentNode->data);
+            currentNode = currentNode->next;
+        } while (currentNode != data->begin());*/
 
         return resultList;
     }

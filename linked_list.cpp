@@ -24,12 +24,12 @@ namespace list {
 #pragma region linked_list
 
     template<class T>
-    database::core::list::linked_list<T>::linked_list() : head{}, tail{}, _size{} {}
+    ::database::core::list::linked_list<T>::linked_list() : head{}, tail{}, _size{} {}
 
     template<class T>
-    database::core::list::linked_list<T>::~linked_list() {
+    ::database::core::list::linked_list<T>::~linked_list() {
         database::core::list::node<T>* current = head;
-        while (current != end()) {
+        while (current != nullptr) {
             database::core::list::node<T>* next = current->next;
             delete current;
             current = next;
@@ -37,13 +37,13 @@ namespace list {
     }
 
     template<class T>
-    database::core::list::node<T>* database::core::list::linked_list<T>::begin() const { return head; }
+    ::database::core::list::node<T>* ::database::core::list::linked_list<T>::begin() const { return head; }
 
     template<class T>
-    database::core::list::node<T>* database::core::list::linked_list<T>::end() const { return tail; }
+    ::database::core::list::node<T>* ::database::core::list::linked_list<T>::end() const { return tail; }
 
     template<class T>
-    database::core::list::node<T>* database::core::list::linked_list<T>::nodeAt(int index) const {
+    ::database::core::list::node<T>* ::database::core::list::linked_list<T>::nodeAt(int index) const {
         database::core::list::node<T>* current = head;
         for (int i = 0; i < index; i++) {
             if (current == nullptr)
@@ -54,17 +54,17 @@ namespace list {
     }
 
     template<class T>
-    bool database::core::list::linked_list<T>::empty() const { return head == nullptr; }
+    bool ::database::core::list::linked_list<T>::empty() const { return head == nullptr; }
 
     template<class T>
-    int database::core::list::linked_list<T>::size() const { return _size; }
+    int ::database::core::list::linked_list<T>::size() const { return _size; }
 
     template<class T>
-    void database::core::list::linked_list<T>::clear() {
-        database::core::list::node<T>* current = head;
+    void ::database::core::list::linked_list<T>::clear() {
+        ::database::core::list::node<T>* current = head;
         // delete nodes until there's none left
-        while (current != end()) {
-            database::core::list::node<T>* next = current->next;
+        while (current != nullptr) {
+            ::database::core::list::node<T>* next = current->next;
             delete current;
             current = next;
         }
@@ -74,12 +74,12 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::insert(database::core::list::node<T>* after_node, T data) {
+    void ::database::core::list::linked_list<T>::insert(::database::core::list::node<T>* after_node, T data) {
         if (after_node == nullptr) {
             return;
         }
         // link the new node to its neighbors
-        database::core::list::node<T>* new_node = new node(data, after_node, after_node->prev);
+        ::database::core::list::node<T>* new_node = new node(data, after_node, after_node->prev);
         // link the prev node to the new node
         if (after_node->prev != nullptr) {
             after_node->prev->next = new_node;
@@ -93,7 +93,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::insert(int pos, T data) {
+    void ::database::core::list::linked_list<T>::insert(int pos, T data) {
         if (pos == _size) {
             push_back(data);
         }
@@ -152,9 +152,6 @@ namespace list {
             tail->next = new_node;
             // fix tail
             tail = new_node;
-            tail->next = head;
-            
-            head->prev = tail;
         }
         _size++;
     }
@@ -169,10 +166,6 @@ namespace list {
         if (tail == nullptr) {
             // list is empty now, fix head
             head = nullptr;
-        }
-        else {
-            tail->next = head;
-            head->prev = tail;
         }
         _size--;
     }
@@ -194,9 +187,6 @@ namespace list {
             head->prev = new_node;
             // fix head
             head = new_node;
-            head->prev = tail;
-
-            tail->next = head;
         }
         _size++;
     }
@@ -204,8 +194,6 @@ namespace list {
     template<class T>
     void ::database::core::list::linked_list<T>::link_head_tail(node<T>* head, node<T>* tail){
         head->next = tail;
-        head->prev = tail;
-        tail->next = head;
         tail->prev = head;
     }
 
@@ -219,10 +207,6 @@ namespace list {
             // list is empty now, fix tail
             tail = nullptr;
         }
-        else {
-            // unlink new head
-            head->prev = tail;
-        }
     }
 
     template<class T>
@@ -231,10 +215,15 @@ namespace list {
         if (currentNode == nullptr)
             return;
 
-        do {
+        while (currentNode != nullptr) {
             anotherList->push_back(currentNode->data);
             currentNode = currentNode->next;
-        } while (currentNode != begin());
+        }
+
+        /*do {
+            anotherList->push_back(currentNode->data);
+            currentNode = currentNode->next;
+        } while (currentNode != begin());*/
     }
 
 

@@ -233,7 +233,6 @@ void app::selection_handler(database::database<student> *db) {
 
     auto key = app::get_user_input("введите критерий выборки (" + headers[field] + " == your_key)");
     auto selector = app::get_filter_by_field(field, key);
-    std::cout << field << " " << key << '\n';
 
     auto selectionResult = db->selectBy(selector);
     app::print_table(headers, selectionResult);

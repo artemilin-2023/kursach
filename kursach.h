@@ -21,7 +21,7 @@ namespace app {
 	void add_record_handler(database::database<student> *db);
 	void delete_record_handler(database::database<student> *db);
 	void selection_handler(database::database<student> *db);
-	void filtration_handler(database::database<student> *db);
+	void sorting_handler(database::database<student> *db);
 	void print_table_handler(database::database<student> *db);
 	
 	// helpers
@@ -32,7 +32,7 @@ namespace app {
 	void add_record_from_file(database::database<student>* db);
 	bool is_number(const std::string& s);
 	void clear_console();
-	std::function<bool(const student&)> get_selector_by_field(int field, std::string key);
+	std::function<bool(const student&)> get_filter_by_field(int field, std::string key);
 	std::function<int(const student&, const student&)> get_comparator_by_field(int field);
 }
 

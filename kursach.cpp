@@ -42,7 +42,6 @@ void app::run() {
        while (!app::is_exist_command(user_input)) {
             std::cout << "Введенной команды не существует. Выберите команду из предложенных (ввод должен быть целым числом)." << '\n';
             user_input = app::get_user_input("выберите действие");
-            continue;
        }
 
         auto command = std::atoi(user_input.c_str());
@@ -134,7 +133,7 @@ std::function<void(database::database<student>*)> app::get_handler_for_command(i
     case 3:
         return app::selection_handler;
     case 4:
-        return app::filtration_handler;
+        return app::sorting_handler;
     case 5:
         return app::print_table_handler;
     }
@@ -228,14 +227,14 @@ void app::selection_handler(database::database<student> *db) {
     }
 
     auto key = app::get_user_input("введите критерий выборки (" + headers[field] + " == your_key)");
-    auto selector = app::get_selector_by_field(field, key);
+    auto selector = app::get_filter_by_field(field, key);
     std::cout << field << " " << key << '\n';
 
     auto selectionResult = db->selectBy(selector);
     app::print_table(headers, selectionResult);
 }
 
-std::function<bool(const student&)> app::get_selector_by_field(int field, std::string key) {
+std::function<bool(const student&)> app::get_filter_by_field(int field, std::string key) {
     switch (field)
     {
     case 1:
@@ -273,7 +272,7 @@ std::function<bool(const student&)> app::get_selector_by_field(int field, std::s
     }
 }
 
-void app::filtration_handler(database::database<student> *db) {
+void app::sorting_handler(database::database<student> *db) {
     std::cout << "Возможные поля для сортировки: " << '\n';
     for (int i = 1; i < headers.size(); i++) {
         std::cout << " " << i << ". " << headers[i] << '\n';

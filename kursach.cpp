@@ -26,7 +26,6 @@ int main()
     
     app::run();
     
-    system("pause");
     return 0;
 }
 
@@ -198,7 +197,13 @@ void app::delete_record_handler(database::database<student> *db) {
     int index = atoi(input.c_str());
 
     db->startTransaction();
-    db->deleteBy(index);
+
+    auto result = db->deleteBy(index);
+    auto message = (result ?
+        "Успешно удалена запись с индексом " + input :
+        "Не удалось удалить значение по индексу " + input + ". Проверьте, что индекс был введен правильно.");
+    std::cout << message << '\n';
+
     db->commitTransaction();
 }
 

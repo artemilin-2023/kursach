@@ -6,14 +6,14 @@ namespace list {
 #pragma region node
 
     template<class T>
-    database::core::list::node<T>::node(T newData) {
+    ::database::core::list::node<T>::node(T newData) {
         data = newData;
         next = nullptr;
         prev = nullptr;
     }
 
     template<class T>
-    database::core::list::node<T>::node(T newData, node* newNext, node* newPrev) {
+    ::database::core::list::node<T>::node(T newData, node* newNext, node* newPrev) {
         data = newData;
         next = newNext;
         prev = newPrev;
@@ -136,7 +136,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::push_back(T data) {
+    void ::database::core::list::linked_list<T>::push_back(T data) {
         database::core::list::node<T>* new_node = new node(data);
         if (tail == nullptr) {
             // empty
@@ -161,7 +161,7 @@ namespace list {
 
 
     template<class T>
-    void database::core::list::linked_list<T>::pop_back() {
+    void ::database::core::list::linked_list<T>::pop_back() {
         if (tail == nullptr) { return; }
         database::core::list::node<T>* new_last = tail->prev;
         delete tail;
@@ -178,7 +178,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::push_front(T data) {
+    void ::database::core::list::linked_list<T>::push_front(T data) {
         database::core::list::node<T>* new_node = new node(data);
         if (head == nullptr) {
             // empty
@@ -202,7 +202,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::link_head_tail(node<T> head, node<T> tail){
+    void ::database::core::list::linked_list<T>::link_head_tail(node<T>* head, node<T>* tail){
         head->next = tail;
         head->prev = tail;
         tail->next = head;
@@ -210,7 +210,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::pop_front() {
+    void ::database::core::list::linked_list<T>::pop_front() {
         if (head == nullptr) { return; }
         database::core::list::node<T>* new_first = head->next;
         delete head;
@@ -226,7 +226,7 @@ namespace list {
     }
 
     template<class T>
-    void database::core::list::linked_list<T>::copyTo(linked_list<T>* anotherList) {
+    void ::database::core::list::linked_list<T>::copyTo(linked_list<T>* anotherList) {
         auto currentNode = head;
         if (currentNode == nullptr)
             return;

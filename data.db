@@ -1,4 +1,3 @@
-from file | from file | from file | from file | from file | from file | from file | from file
 zaza | docker | providing | aaaa | docker docker | aaaaa | docker docker docker | docker docker
 artem | ilin | aleksandrovich | 07.09.2005 | 01.09.2023 | М3О-207Б-23 | Moscow | нет долгов
 Артём | Ильин | Александрович | 09.09.2005 | 01.09.2023 | М3О-207Б-23 | г. Москва, ул. Секретная | нет долгов
@@ -7,3 +6,6 @@ c | c | c | c | c | c | c | c
 b | b | b | b | b | b | b | b
 artem | ilin | hudrich | 11.01.2005 | 01.01.2023 | М3О-207Б-23 | Moscow | есть долги
 Миша | Ларионов | Дмитриевич | 01.12.2004 | 01.09.2023 | М3О-210-23 | Долгопрудный | есть долги
+Имя | Фамилия | Отчество | 25.12.2024 | 26.12.2024 | М3О-219Б-24 | г. Город, ул. Улица, д. 15 | нет долгов
+from file | from file | from file | from file | from file | from file | from file | from file
+zaza | docker | providing | aaaa | docker docker | aaaaa | docker docker docker | docker docker

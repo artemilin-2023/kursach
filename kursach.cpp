@@ -22,7 +22,7 @@ const std::vector<std::string> headers = { "i", "FIRST NAME", "LAST NAME", "PATR
 int main()
 {
     setlocale(LC_ALL, "");
-    std::cout << "КУРСАВАЯ РАБОТА ПО ПРОГРАММИРОВАНИЮ | ИЛЬИН АРТЁМ АЛЕКСАНДРОВИЧ | ВАРИАНТ №3" << '\n';
+    std::cout << "КУРСОВАЯ РАБОТА ПО ПРОГРАММИРОВАНИЮ | ИЛЬИН АРТЁМ АЛЕКСАНДРОВИЧ | ВАРИАНТ №3" << '\n';
     
     app::run();
     
